@@ -2,10 +2,13 @@
 #define OPEN_ADDRESSING_HASHMAP_H
 
 #include "HashMapItem.h"
+#include "constants.h"
+
 #include <algorithm>
 #include <optional>
 #include <vector>
 #include <functional> // for std::hash
+
 namespace benn
 {
     template <typename K, typename V>
@@ -23,21 +26,59 @@ namespace benn
         std::vector<HashMapItem<K, V> *> buckets;
         std::optional<int> getBucketIndexFor(const K &key) const;
         size_t bucketCount;
-        int hashKey(const K &key) const;
         size_t totalElements;
+        int hashKey(const K &key) const;
+        void rebalance();
     };
 
     template <typename K, typename V>
-    OpenAddressingHashMap<K, V>::OpenAddressingHashMap() : bucketCount(100), totalElements(0)
+    OpenAddressingHashMap<K, V>::OpenAddressingHashMap() : bucketCount(1), totalElements(0)
     {
-        buckets.resize(100, nullptr);
+        buckets.resize(bucketCount, nullptr);
     }
 
     template <typename K, typename V>
     int OpenAddressingHashMap<K, V>::hashKey(const K &key) const
     {
         std::hash<K> hasher;
-        return static_cast<int>(hasher(key) % bucketCount);
+        return static_cast<int>(hasher(key) % this->bucketCount);
+    }
+
+    template <typename K, typename V>
+    void OpenAddressingHashMap<K, V>::rebalance()
+    {
+        int loadFactor = totalElements / bucketCount;
+        if (loadFactor < MAX_LOAD_FACTOR)
+        {
+            return;
+        }
+
+        this->bucketCount *= 2;
+        std::vector<HashMapItem<K, V> *> newBuckets;
+        newBuckets.resize(this->bucketCount, nullptr);
+        for (auto item : buckets)
+        {
+            if (item == nullptr)
+                continue;
+            int bucketIndex = hashKey(item->key);
+            int currentIndex = bucketIndex;
+
+            while (newBuckets[currentIndex] != nullptr)
+            {
+                ++currentIndex;
+                if (currentIndex >= bucketCount)
+                    currentIndex = 0;
+                if (currentIndex == bucketIndex)
+                {
+                    break;
+                }
+            }
+
+            newBuckets[currentIndex] = item;
+        }
+
+        this->buckets = newBuckets;
+        std::cout << "resized to " << this->bucketCount << std::endl;
     }
 
     template <typename K, typename V>
@@ -98,12 +139,12 @@ namespace benn
         // 2. this current bucket is already empty
         if (currentIndex == bucketIndex && buckets[currentIndex] != nullptr)
         {
-            // TODO: rebalance
             return;
         }
 
         ++totalElements;
         buckets[currentIndex] = new HashMapItem<K, V>(key, value);
+        rebalance();
     }
 
     template <typename K, typename V>
@@ -117,7 +158,6 @@ namespace benn
 
         // Let's follow C++ convention of auto construction of default values
         this->insert(std::pair<K, V>(key, V()));
-
         auto newItemIndex = this->getBucketIndexFor(key);
         if (!newItemIndex.has_value())
         {

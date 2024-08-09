@@ -2,13 +2,12 @@
 #define CHAINING_HASHMAP_H
 
 #include "HashMapItem.h"
+#include "constants.h"
 
 #include <iostream>
 #include <list>
 #include <algorithm>
 #include <functional> // for std::hash
-
-constexpr uint8_t MAX_LOAD_FACTOR = 1;
 
 namespace benn
 {
