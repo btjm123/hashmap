@@ -35,7 +35,7 @@ x.size();
 x.getBucketCount();
 ```
 - Generic Types
-```
+```cpp
 benn::ChainingHashMap<double, bool> x;
 benn::OpenAddressingHashMap<std::string, int> y;
 ```
