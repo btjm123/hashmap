@@ -1,5 +1,5 @@
-#include "ChainingHashMap.h"
-#include "OpenAddressingHashMap.h"
+#include "ChainingHashMap.hpp"
+#include "OpenAddressingHashMap.hpp"
 
 int main()
 {

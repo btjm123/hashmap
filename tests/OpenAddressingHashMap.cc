@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <algorithm>
-#include "OpenAddressingHashMap.h"
+#include "OpenAddressingHashMap.hpp"
 
 // Test construction method
 TEST(OpenAddressingHashMap, Construction)

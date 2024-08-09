@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <algorithm>
-#include "ChainingHashMap.h"
+#include "ChainingHashMap.hpp"
 
 // Test construction method
 TEST(ChainingHashMap, Construction)
