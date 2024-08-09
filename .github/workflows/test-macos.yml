@@ -1,0 +1,19 @@
+name: MacOS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: macos-14
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Build using CMake
+        run: mkdir build && cd build && cmake .. && make
+
+      - name: Run tests 
+        run: ./tests/chaining_hashmap && ./tests/open_addressing_hashmap
