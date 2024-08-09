@@ -5,9 +5,8 @@
   <img src="https://github.com/btjm123/hashmap/actions/workflows/test-ubuntu.yaml/badge.svg"/>
 </div>
 
-<br/>
-Whilst studying in university, I had the opportunity to study [2040S - Data Structures & Algorithms](https://www.comp.nus.edu.sg/~stevenha/cs2040s.html), which sparked my curiosity in how different hashmaps implementations resolve hash collisions (i.e linear probing, chaining using linked lists). 
 
+Whilst studying in university, I had the opportunity to study [2040S - Data Structures & Algorithms](https://www.comp.nus.edu.sg/~stevenha/cs2040s.html), which sparked my curiosity in how different hashmaps implementations resolve hash collisions (i.e linear probing, chaining using linked lists). 
 
 Each approach has its own tradeoffs, but we were taught generally these approaches booasted the same asymptotic time complexity - theoretically at least. I wanted to put such claims to the test - to test if these approaches do translate to similiar real-world performance
 
