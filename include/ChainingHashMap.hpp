@@ -24,7 +24,7 @@ namespace benn
         size_t getBucketCount() const;
 
     private:
-        std::vector<std::list<HashMapItem<int, int> *>> buckets;
+        std::vector<std::list<HashMapItem<K, V> *>> buckets;
         size_t bucketCount;
         size_t totalElements;
         HashMapItem<K, V> *find(K key);
@@ -35,7 +35,7 @@ namespace benn
     template <typename K, typename V>
     ChainingHashMap<K, V>::ChainingHashMap() : totalElements(0), bucketCount(1)
     {
-        buckets.resize(bucketCount, std::list<HashMapItem<K, V> *>());
+        buckets.resize(bucketCount);
     }
 
     template <typename K, typename V>
