@@ -16,4 +16,4 @@ jobs:
         run: mkdir build && cd build && cmake .. && make
 
       - name: Run tests 
-        run: ./tests/chaining_hashmap && ./tests/open_addressing_hashmap
+        run: ./build/tests/chaining_hashmap && ./build/tests/open_addressing_hashmap
