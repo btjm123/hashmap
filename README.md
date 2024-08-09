@@ -32,6 +32,7 @@ x.remove({1, 10});
 - Size
 ```cpp
 x.size();
+x.getBucketCount();
 ```
 - Generic Types
 ```
