@@ -32,6 +32,10 @@ x.insert({1, 10});
 ```cpp
 x.remove({1, 10});
 ```
+- Existence of key
+```cpp
+x.count(1);
+```
 - Size
 ```cpp
 x.size();
