@@ -30,7 +30,7 @@ x.insert({1, 10});
 ```
 - Deletion
 ```cpp
-x.remove({1, 10});
+x.remove(1);
 ```
 - Existence of key
 ```cpp
