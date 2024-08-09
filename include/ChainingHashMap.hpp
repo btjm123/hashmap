@@ -2,7 +2,7 @@
 #define CHAINING_HASHMAP_H
 
 #include "HashMapItem.h"
-#include "constants.h"
+#include "constants.hpp"
 
 #include <iostream>
 #include <list>

@@ -2,7 +2,7 @@
 #define OPEN_ADDRESSING_HASHMAP_H
 
 #include "HashMapItem.h"
-#include "constants.h"
+#include "constants.hpp"
 
 #include <algorithm>
 #include <optional>
