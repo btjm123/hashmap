@@ -35,7 +35,7 @@ x.size();
 ```
 - Generic Types
 ```
-benn::ChainingHashMap<string, int> x;
+benn::ChainingHashMap<double, bool> x;
 ```
 
 ## Build
