@@ -9,6 +9,8 @@ int main()
 
     yay[1] = 100;
     std::cout << yay[1] << '\n';
+    std::cout << yay.count(1) << '\n';
+    std::cout << yay.count(2) << '\n';
 
     yay.insert(std::pair<int, int>{2, 1000});
     std::cout << yay[2] << '\n';
@@ -30,6 +32,8 @@ int main()
     std::cout << yay2[0] << "\n";
 
     std::cout << yay2[10] << "\n";
+    std::cout << yay2.count(0) << '\n';
+    std::cout << yay2.count(1) << '\n';
 
     yay2[1] = 10;
     std::cout << yay2[1] << "\n";

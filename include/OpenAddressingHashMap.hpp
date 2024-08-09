@@ -20,6 +20,7 @@ namespace benn
         void insert(std::pair<K, V> kv);
         void remove(K key);
         V &operator[](K key);
+        int count(const K &key) const;
         size_t size() const;
         size_t getBucketCount() const;
 
@@ -178,6 +179,13 @@ namespace benn
             --totalElements;
             buckets[itemIndex.value()] = nullptr;
         }
+    }
+
+    template <typename K, typename V>
+    int OpenAddressingHashMap<K, V>::count(const K &key) const
+    {
+        auto itemIndex = getBucketIndexFor(key);
+        return itemIndex.has_value();
     }
 
     template <typename K, typename V>

@@ -20,6 +20,7 @@ namespace benn
         V &operator[](K key);
         void insert(std::pair<K, V> kv);
         void remove(K key);
+        int count(const K &key) const;
         size_t size() const;
         size_t getBucketCount() const;
 
@@ -27,7 +28,7 @@ namespace benn
         std::vector<std::list<HashMapItem<K, V> *>> buckets;
         size_t bucketCount;
         size_t totalElements;
-        HashMapItem<K, V> *find(K key);
+        HashMapItem<K, V> *find(K key) const;
         void rebalance();
         int hashKey(const K &key) const;
     };
@@ -57,7 +58,7 @@ namespace benn
     }
     */
     template <typename K, typename V>
-    HashMapItem<K, V> *ChainingHashMap<K, V>::find(K key)
+    HashMapItem<K, V> *ChainingHashMap<K, V>::find(K key) const
     {
         int bucketIndex = hashKey(key);
         auto &items = buckets[bucketIndex];
@@ -150,6 +151,13 @@ namespace benn
                 return;
             }
         }
+    }
+
+    template <typename K, typename V>
+    int ChainingHashMap<K, V>::count(const K &key) const
+    {
+        auto item = this->find(key);
+        return item != nullptr;
     }
 
     template <typename K, typename V>
