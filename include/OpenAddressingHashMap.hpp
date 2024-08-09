@@ -1,8 +1,8 @@
 #ifndef OPEN_ADDRESSING_HASHMAP_H
 #define OPEN_ADDRESSING_HASHMAP_H
 
-#include "HashMapItem.h"
-#include "constants.hpp"
+#include "HashMapItem.hpp"
+#include "constants.h"
 
 #include <algorithm>
 #include <optional>

@@ -1,8 +1,8 @@
 #ifndef CHAINING_HASHMAP_H
 #define CHAINING_HASHMAP_H
 
-#include "HashMapItem.h"
-#include "constants.hpp"
+#include "HashMapItem.hpp"
+#include "constants.h"
 
 #include <iostream>
 #include <list>
