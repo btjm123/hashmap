@@ -20,7 +20,8 @@ namespace benn
         void insert(std::pair<K, V> kv);
         void remove(K key);
         V &operator[](K key);
-        size_t size();
+        size_t size() const;
+        size_t getBucketCount() const;
 
     private:
         std::vector<HashMapItem<K, V> *> buckets;
@@ -180,9 +181,15 @@ namespace benn
     }
 
     template <typename K, typename V>
-    size_t OpenAddressingHashMap<K, V>::size()
+    size_t OpenAddressingHashMap<K, V>::size() const
     {
         return totalElements;
+    }
+
+    template <typename K, typename V>
+    size_t OpenAddressingHashMap<K, V>::getBucketCount() const
+    {
+        return bucketCount;
     }
 
 } // namespace benn

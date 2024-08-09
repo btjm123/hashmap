@@ -20,7 +20,8 @@ namespace benn
         V &operator[](K key);
         void insert(std::pair<K, V> kv);
         void remove(K key);
-        size_t size();
+        size_t size() const;
+        size_t getBucketCount() const;
 
     private:
         std::vector<std::list<HashMapItem<int, int> *>> buckets;
@@ -152,9 +153,15 @@ namespace benn
     }
 
     template <typename K, typename V>
-    size_t ChainingHashMap<K, V>::size()
+    size_t ChainingHashMap<K, V>::size() const
     {
         return totalElements;
+    }
+
+    template <typename K, typename V>
+    size_t ChainingHashMap<K, V>::getBucketCount() const
+    {
+        return bucketCount;
     }
 
 } // namespace benn
