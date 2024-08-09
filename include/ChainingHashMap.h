@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <functional> // for std::hash
 
+constexpr uint8_t MAX_LOAD_FACTOR = 1;
+
 namespace benn
 {
     template <typename K, typename V>
@@ -15,14 +17,14 @@ namespace benn
     {
     public:
         ChainingHashMap();
-        ~ChainingHashMap();
+        ~ChainingHashMap() = default;
         V &operator[](K key);
         void insert(std::pair<K, V> kv);
         void remove(K key);
         size_t size();
 
     private:
-        std::list<HashMapItem<int, int> *> *buckets;
+        std::vector<std::list<HashMapItem<int, int> *>> buckets;
         size_t bucketCount;
         size_t totalElements;
         HashMapItem<K, V> *find(K key);
@@ -31,21 +33,9 @@ namespace benn
     };
 
     template <typename K, typename V>
-    ChainingHashMap<K, V>::ChainingHashMap()
+    ChainingHashMap<K, V>::ChainingHashMap() : totalElements(0), bucketCount(1)
     {
-        totalElements = 0;
-        bucketCount = 100;
-        buckets = new std::list<HashMapItem<K, V> *>[bucketCount];
-    }
-
-    template <typename K, typename V>
-    ChainingHashMap<K, V>::~ChainingHashMap()
-    {
-        for (size_t i = 0; i < bucketCount; i++)
-        {
-            buckets[i].clear();
-        }
-        delete[] buckets;
+        buckets.resize(bucketCount, std::list<HashMapItem<K, V> *>());
     }
 
     template <typename K, typename V>
@@ -85,7 +75,26 @@ namespace benn
     template <typename K, typename V>
     void ChainingHashMap<K, V>::rebalance()
     {
-        // TODO: rehash
+        int loadFactor = (int)totalElements / bucketCount;
+        if (loadFactor < MAX_LOAD_FACTOR)
+        {
+            return;
+        }
+
+        this->bucketCount *= 2;
+        std::vector<std::list<HashMapItem<K, V> *>> newBuckets;
+        newBuckets.resize(this->bucketCount, std::list<HashMapItem<K, V> *>());
+        for (const auto items : this->buckets)
+        {
+            for (const auto item : items)
+            {
+                int newHashKey = hashKey(item->key);
+                newBuckets[newHashKey].push_back(item);
+            }
+        }
+
+        // std::cout << "size updated!" << this->bucketCount << std::endl;
+        this->buckets = newBuckets;
     }
 
     template <typename K, typename V>
@@ -101,6 +110,7 @@ namespace benn
             auto newItem = new HashMapItem<K, V>{key, value};
             ++totalElements;
             items.push_back(newItem);
+            rebalance();
         }
         else
         {
@@ -111,9 +121,11 @@ namespace benn
     template <typename K, typename V>
     V &ChainingHashMap<K, V>::operator[](K key)
     {
+
         auto kv = this->find(key);
         if (kv != nullptr)
         {
+
             return kv->value;
         }
         // If key does not exist, follow C++ convention of auto construction of values
