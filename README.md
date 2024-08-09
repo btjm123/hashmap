@@ -56,6 +56,6 @@ mkdir build && cd build && cmake .. && make
 ## Testing
 This project uses [Google Test](https://github.com/google/googletest)
 ```sh
-cd build && ./tests/open_addressing_hashmap.cpp
-cd build && ./tests/chaining_hashmap.cpp
+cd build && ./tests/open_addressing_hashmap
+cd build && ./tests/chaining_hashmap
 ```
