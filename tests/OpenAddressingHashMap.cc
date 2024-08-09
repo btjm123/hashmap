@@ -89,3 +89,16 @@ TEST(OpenAddressingHashMap, Resize)
     map[8] = 80;
     EXPECT_EQ(map.getBucketCount(), 16);
 }
+
+// Test for existence of key
+TEST(OpenAddressingHashMap, ExistenceOfKey)
+{
+    benn::OpenAddressingHashMap<int, int> map;
+
+    EXPECT_EQ(map.count(0), 0);
+    map[0] = 10;
+
+    EXPECT_EQ(map.count(0), 1);
+    EXPECT_EQ(map.count(1), 0);
+    EXPECT_EQ(map.count(10), 0);
+}
