@@ -73,3 +73,6 @@ Load Average: 1.78, 2.28, 2.49
 
 ![Figure_1](https://github.com/user-attachments/assets/c2243376-98a3-464f-b8bc-0f68a677c9aa)
 
+To be very honest, I'm not very sure how to explain this graph. 
+
+My initial hypothesis:  While resizing the table introduces a temporary performance drop due to a complete rehashing, the cost of resizing is amortized across many find operations invoked later (hence the performance increase). I'll be happy to be proven wrong though/offered alternative ideas (and how to prove them).
