@@ -1,23 +1,18 @@
 enable_testing()
 
-add_executable(
-  chaining_hashmap
-  ChainingHashMap.cc
-)
-
-add_executable(
-  open_addressing_hashmap
-  OpenAddressingHashMap.cc
-)
-target_link_libraries(
-  chaining_hashmap
-  GTest::gtest_main
-)
-target_link_libraries(
-  open_addressing_hashmap
-  GTest::gtest_main
-)
-
 include(GoogleTest)
-gtest_discover_tests(chaining_hashmap)
-gtest_discover_tests(open_addressing_hashmap)
+
+function (add_test executableName fileName)
+  add_executable(
+    ${executableName}
+    ${fileName}
+  )
+  target_link_libraries(
+    ${executableName}
+    GTest::gtest_main 
+  )
+ gtest_discover_tests(${executableName}) 
+endfunction()
+
+add_test(chaining_hashmap ChainingHashMap.cc)
+add_test(open_addressing_hashmap OpenAddressingHashMap.cc)
