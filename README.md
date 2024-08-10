@@ -79,6 +79,7 @@ To be very honest, I'm not very sure how to explain this graph.
 - Quadratic Probing
 - Double Hashing
 - Implement `.start()` and `.end()`
+- Create my own `LinkedList` instead of using `std::list` for **ChainingHashMap**
 
 My initial hypothesis:  While resizing the table introduces a temporary performance drop due to a complete rehashing, the cost of resizing is amortized across many find operations invoked later (hence the performance increase). 
 
