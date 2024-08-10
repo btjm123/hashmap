@@ -71,6 +71,5 @@ CPU Caches:
 Load Average: 1.78, 2.28, 2.49
 ```
 
-![Figure_1](https://github.com/user-attachments/assets/71d141fe-03bc-49e8-8e8f-fd9c594b86a1)
-
+![Figure_1](https://github.com/user-attachments/assets/c2243376-98a3-464f-b8bc-0f68a677c9aa)
 
