@@ -34,7 +34,7 @@ namespace benn
     };
 
     template <typename K, typename V>
-    OpenAddressingHashMap<K, V>::OpenAddressingHashMap() : bucketCount(100), totalElements(0)
+    OpenAddressingHashMap<K, V>::OpenAddressingHashMap() : bucketCount(1), totalElements(0)
     {
         buckets.resize(bucketCount, nullptr);
     }
