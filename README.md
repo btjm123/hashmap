@@ -53,9 +53,19 @@ This project uses [CMake](https://cmake.org/)
 mkdir build && cd build && cmake .. && make
 ```
 
-## Testing
+## Test
 This project uses [Google Test](https://github.com/google/googletest)
 ```sh
 cd build && ./tests/open_addressing_hashmap
 cd build && ./tests/chaining_hashmap
 ```
+
+## Benchmark
+My CPU stats:
+```sh
+Run on (12 X 24 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB
+  L1 Instruction 128 KiB
+  L2 Unified 4096 KiB (x12)
+Load Average: 1.78, 2.28, 2.49
