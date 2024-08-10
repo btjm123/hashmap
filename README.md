@@ -69,3 +69,8 @@ CPU Caches:
   L1 Instruction 128 KiB
   L2 Unified 4096 KiB (x12)
 Load Average: 1.78, 2.28, 2.49
+```
+
+![Figure_1](https://github.com/user-attachments/assets/71d141fe-03bc-49e8-8e8f-fd9c594b86a1)
+
+
